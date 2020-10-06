@@ -11,6 +11,6 @@ std = torch.Tensor([0.229, 0.224, 0.225]).cuda()
 def preprocess(image):
     device = torch.device('cuda')
     image = PIL.Image.fromarray(image)
-    image = transforms.functional.to_tensor(image).to(device)
+    image = transforms.functional.to_tensor(image).to(device).half()
     image.sub_(mean[:, None, None]).div_(std[:, None, None])
     return image[None, ...]
